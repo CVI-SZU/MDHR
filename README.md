@@ -1,2 +1,2 @@
 # MDHR
-Code for paper multi-scale dynamic and hierarchical relationship modeling for facial action units recognition
+Code for paper 'Multi-Scale Dynamic and Hierarchical Relationship Modeling for Facial Action Units Recognition'
