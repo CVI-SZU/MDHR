@@ -3,7 +3,8 @@
 Paper: https://arxiv.org/abs/2404.06443
 
 ## Overview:
-![cvpr24_poster](https://github.com/CVI-SZU/MDHR/assets/67353419/00e9fc1c-b2f7-41ad-8bb7-bd18f68b309a)
+[overview.pptx](https://github.com/user-attachments/files/15531902/overview.pptx)
+
 
 ## Requirements
 - Python3
@@ -14,8 +15,6 @@ Paper: https://arxiv.org/abs/2404.06443
 bash train.sh
 ```
 ## results
-![image](https://github.com/CVI-SZU/MDHR/assets/67353419/ed26b236-4540-4ad5-abf1-1001df4c96ca)
-![image](https://github.com/CVI-SZU/MDHR/assets/67353419/3be612a7-283d-4afe-b195-f34b3f5cc04f)
 
 ## Citation
 if the code or method help you in the research, please cite the following paper:
