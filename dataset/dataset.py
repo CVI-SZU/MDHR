@@ -35,11 +35,11 @@ class video_BP4D_train(Dataset):
         train_label_list_path = os.path.join(self._root_path, 'BP4D_train_label_fold'+str(self.fold)+'.txt')
         train_label_list = np.loadtxt(train_label_list_path)
 
-        #region labels
+        # region labels
         train_sub_label_list_path = os.path.join(self._root_path, 'BP4D_train_sub_label_fold'+str(self.fold)+'.txt')
         train_sub_label_list = np.loadtxt(train_sub_label_list_path)
 
-        video_dic = {}   #   each subject has 8 video with different numbers of frame
+        video_dic = {}   #   each subject has 8 videos with different numbers of frame
         img_path = []
         img_label = []
         img_sub_label = []
@@ -120,6 +120,7 @@ class video_BP4D_val(Dataset):
         val_label_list_path = os.path.join(self._root_path, 'BP4D_test_label_fold'+str(self.fold)+'.txt')
         val_label_list = np.loadtxt(val_label_list_path)
 
+        # region labels
         val_sub_label_list_path = os.path.join(self._root_path, 'BP4D_test_sub_label_fold'+str(self.fold)+'.txt')
         val_sub_label_list = np.loadtxt(val_sub_label_list_path)
 
@@ -211,7 +212,7 @@ class video_DISFA_train(Dataset):
         train_label_list_path = os.path.join(self._root_path, 'DISFA_train_label_fold'+str(self.fold)+'.txt')
         train_label_list = np.loadtxt(train_label_list_path)
 
-        #img sub label
+        # region labels
         train_sub_label_list_path = os.path.join(self._root_path, 'DISFA_train_sub_label_fold'+str(self.fold)+'.txt')
         train_sub_label_list = np.loadtxt(train_sub_label_list_path)
 
@@ -227,7 +228,7 @@ class video_DISFA_train(Dataset):
             frame_num += 1
 
             if i+1 < len(train_label_list):
-                if train_image_list[i].split('/')[0] != train_image_list[i+1].split('/')[0] or frame_num > 606:  #split
+                if train_image_list[i].split('/')[0] != train_image_list[i+1].split('/')[0]:  #split
                     video_dic['img_path'] = img_path
                     video_dic['img_label'] = np.array(img_label)
                     video_dic['img_sub_label'] = np.array(img_sub_label)
@@ -296,6 +297,7 @@ class video_DISFA_val(Dataset):
         val_label_list_path = os.path.join(self._root_path, 'DISFA_test_label_fold'+str(self.fold)+'.txt')
         val_label_list = np.loadtxt(val_label_list_path)
 
+        # region labels
         val_sub_label_list_path = os.path.join(self._root_path, 'DISFA_test_sub_label_fold'+str(self.fold)+'.txt')
         val_sub_label_list = np.loadtxt(val_sub_label_list_path)
 
