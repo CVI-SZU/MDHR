@@ -9,7 +9,7 @@ def get_pred_binary(pred, num_bits):
     pred = torch.argmax(F.softmax(pred, dim=1), dim=1)
     return dec2bin(pred, num_bits)
 
-def calculate_adjmask(up_pred, mid_pred, down1_pred, down2_pred):
+def calculate_adjmask_bp4d(up_pred, mid_pred, down1_pred, down2_pred):
     # Convert predictions to binary representation
     up_pred_bin = get_pred_binary(up_pred, 4)
     mid_pred_bin = get_pred_binary(mid_pred, 1)
@@ -30,6 +30,21 @@ def calculate_adjmask(up_pred, mid_pred, down1_pred, down2_pred):
         down2_pred_bin[:, 1:2],
         down2_pred_bin[:, 2:3],
         down2_pred_bin[:, 3:4]
+        ), dim=1)
+    adj_mask = adj_mask.unsqueeze(1).float()
+    return adj_mask
+
+def calculate_adjmask_disfa(up_pred, mid_pred, down_pred):
+    # Convert predictions to binary representation
+    up_pred_bin = get_pred_binary(up_pred, 3)
+    mid_pred_bin = get_pred_binary(mid_pred, 2)
+    down_pred_bin = get_pred_binary(down_pred, 3)
+    
+    # Concatenate the binary representations to form the adj_mask
+    adj_mask = torch.cat((
+        up_pred_bin,   
+        mid_pred_bin,  
+        down_pred_bin
         ), dim=1)
     adj_mask = adj_mask.unsqueeze(1).float()
     return adj_mask

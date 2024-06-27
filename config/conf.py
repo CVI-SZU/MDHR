@@ -43,11 +43,10 @@ def set_env(conf):
 def set_outdir(conf):
     default_outdir = os.path.join('result', conf.dataset)
     outdir = os.path.join(default_outdir, conf.exp_name, conf.backbone)
-    prefix = 'lr_' + str(conf.learning_rate) + '_fold_'+str(conf.fold) 
+    prefix = '_fold_'+str(conf.fold) 
     outdir = os.path.join(outdir, prefix)
     ensure_dir(outdir)
     conf.outdir = outdir
-    shutil.copyfile("./model/model.py", os.path.join(outdir, 'model.py'))
     return conf
 
 def ensure_dir(dir_name):

@@ -6,10 +6,9 @@ import torch.optim as optim
 from tqdm import tqdm
 import logging
 from config.conf import set_logger, set_outdir, set_env
-from model.model import MDHR
+from model.model_BP4D import MDHR
 from utils.utils import *
 from dataset.dataset import video_BP4D_train, video_BP4D_val
-import torch.nn.functional as F
 import argparse
 
 def get_dataloader(conf):
@@ -143,10 +142,10 @@ if __name__ == '__main__':
 
     # Datasets
     parser.add_argument('--dataset', default="BP4D", type=str, help="experiment dataset: BP4D / DISFA / Aff")
-    parser.add_argument('--dataset_path', default='/data/wangzihan/Dataset/BP4D_dataset/', type=str, help="root path to dataset")
+    parser.add_argument('--dataset_path', default='/path/to/BP4D_dataset/', type=str, help="root path to dataset")
     parser.add_argument('--fold', default=1, type=int, help="fold number, 1,2,3")
 
-    # Network 
+    # Network
     parser.add_argument('--backbone', default='resnet', type=str, help= "backbone architecture: resnet / swin_transformer")
     parser.add_argument('--au_num', default=12, type=int, help='number of AUs')
     parser.add_argument('--k', default=5, type=int, help='number of adjacent frames')

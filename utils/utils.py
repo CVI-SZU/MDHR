@@ -110,6 +110,10 @@ def BP4D_infolist(list):
     infostr = {'AU1: {:.2f} AU2: {:.2f} AU4: {:.2f} AU6: {:.2f} AU7: {:.2f} AU10: {:.2f} AU12: {:.2f} AU14: {:.2f} AU15: {:.2f} AU17: {:.2f} AU23: {:.2f} AU24: {:.2f} '.format(100.*list[0],100.*list[1],100.*list[2],100.*list[3],100.*list[4],100.*list[5],100.*list[6],100.*list[7],100.*list[8],100.*list[9],100.*list[10],100.*list[11])}
     return infostr
 
+def DISFA_infolist(list):
+    infostr = {'AU1: {:.2f} AU2: {:.2f} AU4: {:.2f}  AU6: {:.2f} AU9: {:.2f} AU12: {:.2f}  AU25: {:.2f} AU26: {:.2f} '.format(100.*list[0],100.*list[1],100.*list[2],100.*list[3],100.*list[4],100.*list[5],100.*list[6],100.*list[7])}
+    return infostr
+    
 def adjust_learning_rate(optimizer, epoch, epochs, init_lr, iteration, num_iter, warmup_epoch):
     current_iter = iteration + epoch * num_iter
     max_warmup_iter = warmup_epoch * num_iter
@@ -203,7 +207,7 @@ class image_train(object):
 
 
 class image_test(object):
-    def __init__(self, img_size=256, crop_size=224):
+    def __init__(self, img_size=224, crop_size=224):
         self.img_size = img_size
         self.crop_size = crop_size
 
@@ -212,7 +216,6 @@ class image_test(object):
                                          std=[0.229, 0.224, 0.225])
         transform = transforms.Compose([
             transforms.Resize(self.img_size),
-            transforms.CenterCrop(self.crop_size),
             transforms.ToTensor(),
             normalize
         ])
@@ -252,7 +255,10 @@ class WeightedAsymmetricLoss(nn.Module):
 
 def load_state_dict(model,path):
     checkpoints = torch.load(path, map_location=torch.device('cpu'))
-    state_dict = checkpoints['state_dict']
+    if 'state_dict' in checkpoints:
+        state_dict = checkpoints['state_dict']
+    else:
+        state_dict = checkpoints
     from collections import OrderedDict
     new_state_dict = OrderedDict()
     for k, v in state_dict.items():
@@ -260,5 +266,5 @@ def load_state_dict(model,path):
             k = k[7:]  # remove `module.`
         new_state_dict[k] = v
     # load params
-    model.load_state_dict(new_state_dict, strict=False)
+    model.load_state_dict(new_state_dict, strict=True)
     return model

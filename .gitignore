@@ -1,3 +1,6 @@
 __pycache__/
 result/
 checkpoints/
+best_model/
+
+compare_checkpoints.py

@@ -5,7 +5,7 @@ from .swin_transformer import *
 from .resnet import *
 import math
 from .GAT import GATConv
-from .utils import calculate_adjmask
+from .utils import calculate_adjmask_bp4d
 
 class LinearBlock(nn.Module):
     def __init__(self, in_features, out_features=None, drop=0.0):
@@ -248,7 +248,7 @@ class CrossregionRelationshipModeling(nn.Module):
                              [1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0], #AU17
                              [1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0], #AU23
                              [1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0]]) #AU24
-        eye = torch.eye(12).float().cuda()
+        eye = torch.eye(self.num_classes).float().cuda()
         adj = adj.unsqueeze(0).float().cuda()
         adj = adj*adj_mask + eye
         x = self.gat(adj, x)
@@ -318,7 +318,7 @@ class MDHR(nn.Module):
         x_dynamic = self.MFD(multiscale_out, B, T)
         x = x_static + x_dynamic
         up_pred, mid_pred, down1_pred, down2_pred, x = self.LRM(x)
-        adj_mask = calculate_adjmask(up_pred.detach(), mid_pred.detach(), down1_pred.detach(), down2_pred.detach())
+        adj_mask = calculate_adjmask_bp4d(up_pred.detach(), mid_pred.detach(), down1_pred.detach(), down2_pred.detach())
         x = self.CRM(x, adj_mask)
         x = self.TCN(x, B, T)
         x = self.node_classifier(x)
