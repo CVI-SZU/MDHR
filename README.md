@@ -1,9 +1,9 @@
-# Multi-Scale Dynamic and Hierarchical Relationship Modeling for Facial Action Units Recognition
+# \[CVPR2024\] Multi-Scale Dynamic and Hierarchical Relationship Modeling for Facial Action Units Recognition
 
 Paper: https://arxiv.org/abs/2404.06443
 
 ## Overview:
-[overview.pptx](./pic/overview.png)
+[overview](pic/overview.png)
 
 ## Requirements
 - Python3
