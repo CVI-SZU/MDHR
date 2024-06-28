@@ -1,19 +1,29 @@
-# \[CVPR2024\] Multi-Scale Dynamic and Hierarchical Relationship Modeling for Facial Action Units Recognition
+# \[CVPR2024\]
+# Multi-Scale Dynamic and Hierarchical Relationship Modeling for Facial Action Units Recognition
 
-Paper: https://arxiv.org/abs/2404.06443
+This is an official release of the [Paper](https://arxiv.org/abs/2404.06443).
 
 ## Overview:
-[overview](pic/overview.png)
+![overview](pic/overview.png)
 
 ## Requirements
 - Python3
 - PyTorch
-
+```bash
+pip3 install -r requirements.txt
+```
 ## Train
+```bash
 python train.py --backbone resnet --fold 1 --dataset_path /path/to/BP4D_dataset/ 
-
+```
 ## Test
+```bash
 python test_BP4D.py --backbone resnet --fold 1 --dataset_path /path/to/BP4D_dataset/ --resume /path/to/best_model_fold1.pth --evaluate
+```
+
+## Pretrained models
+BP4D:[link](https://drive.google.com/drive/folders/1x7yGohNVuvKqltMIYGCkha_hwgsOPK4q?usp=sharing)
+DISFA:[link](https://drive.google.com/drive/folders/1W41xV7GXjCe_KU_dbKH-F5zcNoan5yan?usp=sharing)
 
 ## results
 
