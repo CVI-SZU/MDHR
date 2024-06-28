@@ -24,10 +24,10 @@ python test_BP4D.py --backbone resnet --fold 1 --dataset_path /path/to/BP4D_data
 
 ## results
 BP4D
-![BP4D](/data/wangzihan/MDHR/pic/屏幕截图 2024-06-28 145128.png)
+![BP4D](pic/屏幕截图 2024-06-28 145128.png)
 
 DISFA
-![DISFA](/data/wangzihan/MDHR/pic/屏幕截图 2024-06-28 145238.png)
+![DISFA](pic/屏幕截图 2024-06-28 145238.png)
 
 ## Citation
 if the code or method help you in the research, please cite the following paper:
